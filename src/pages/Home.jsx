@@ -156,7 +156,7 @@ export default function Home() {
               {step}
             </div>
           ) : (
-            <div class="flex flex-col px-5 border-t border-blue-900 bg-blue-200 mt-4 mx-2 p-5">
+            <div class="flex flex-col px-5 border-t border-blue-900 bg-blue-100 mt-4 mx-2 p-5">
               <div class="text-center text-2xl font-bold mb-4 text-gray-800 shimmer-animation">
                 {qualificationConfirmationText}
               </div>
