@@ -98,7 +98,7 @@ export default function Home() {
     <div
       style={{
         background:
-          "linear-gradient(to bottom, #ffe6e6, #e6faff, #ccffcc, #ffffe6)",
+          "linear-gradient(to bottom, #ffebff, #f0ebff, #e0ccff, #f9ebff)",
       }}
     >
       {isLoading ? (
@@ -175,7 +175,7 @@ export default function Home() {
           ) : (
             <>
               {!endloader ? (
-                <div className="flex flex-col items-center px-5 border-t border-blue-900 bg-blue-100 mt-4 mx-4 p-10">
+                <div className="flex flex-col items-center px-5 border-t border-blue-700 mt-4 mx-4 p-10 glassmorphism">
                   <div className="text-center text-2xl font-bold mb-4 text-gray-800 shimmer-animation">
                     {qualificationConfirmationText}
                   </div>
@@ -204,11 +204,11 @@ export default function Home() {
                     spot will not be reserved.
                   </div>
                   <div className="flex justify-center itmes-center mb-4 p-4 text-gray-50 border-dotted border-2 border-red-500 w-28">
-                    <div className="font-bold text-gray-50 mr-1 shimmer-animation text-xl">
+                    <div className="font-bold mr-1 shimmer-animation text-xl text-red-600">
                       {min}
                     </div>
-                    <div>:</div>
-                    <div className="font-bold text-gray-50 ml-1 shimmer-animation text-xl">
+                    <div className="text-red-600">:</div>
+                    <div className="font-boldml-1 shimmer-animation text-xl text-red-600">
                       {second}
                     </div>
                   </div>
