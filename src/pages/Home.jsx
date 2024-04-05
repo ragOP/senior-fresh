@@ -95,7 +95,12 @@ export default function Home() {
   };
 
   return (
-    <div style={{ background: "linear-gradient(to bottom, #F0F4FD, #D9E4FF)" }}>
+    <div
+      style={{
+        background:
+          "linear-gradient(to bottom, #ffe6e6, #e6faff, #ccffcc, #ffffe6)",
+      }}
+    >
       {isLoading ? (
         <>
           <div className="sticky-container glassmorphism md:px-6 lg:px-16 z-50 text-lg font-semibold">
