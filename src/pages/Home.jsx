@@ -11,6 +11,7 @@ import {
 } from "../constant";
 import { scrollTo } from "../utils/animate";
 import logo from "../assests/logo.png";
+import loader from "../assests/loader.gif";
 
 export default function Home() {
   useEffect(() => {
@@ -25,6 +26,7 @@ export default function Home() {
   const [second, setSecond] = useState(0);
   const [yes, setYes] = useState("YES, I'M 65 OR OLDER");
   const [no, setNo] = useState("NO, I'M 64 OR YOUNGER");
+  const [endloader, setendloader] = useState(true);
 
   const stepProcess = () => {
     if (step === "Reviewing Your Answers...") {
@@ -40,6 +42,9 @@ export default function Home() {
     if (step === "Confirming Eligibility...") {
       setTimeout(() => {
         setStep("completed");
+        setTimeout(() => {
+          setendloader(false);
+        }, 4000);
       }, 1500);
     }
 
@@ -114,14 +119,14 @@ export default function Home() {
 
           {step === "process" ? (
             <>
-              <div class="max-w-48rem mx-auto px-5">
-                <div class="text-center">
-                  <div class="font-roboto font-semibold text-2xl py-4 text-blue-900 mt-[-14px]">
+              <div className="max-w-48rem mx-auto px-5">
+                <div className="text-center">
+                  <div className="font-roboto font-semibold text-2xl py-2 text-blue-900 mt-[-14px]">
                     {programDescriptionText}
                   </div>
-                  <div class="mb-4 text-base text-justify">{desc}</div>
-                  <img class="w-full mb-4" src={logo} alt="head" />
-                  <div class="text-base text-justify">
+                  <div className="mb-4 text-sm text-justify">{desc}</div>
+                  <img className="w-full mb-4" src={logo} alt="head" />
+                  <div className="text-sm text-justify">
                     If you have not yet claimed your monthly allowance then
                     answer the questions below and once approved{" "}
                     <b>
@@ -130,21 +135,28 @@ export default function Home() {
                     </b>
                   </div>
                 </div>
-                <div class="survey mt-4">
-                  <div id="btn" class="text-center text-2xl font-semibold my-5">
+                <div className="survey mt-2">
+                  <div
+                    id="btn"
+                    className="text-center text-2xl font-semibold my-2"
+                  >
                     {quiz}
                   </div>
-                  <div class="flex flex-col items-center justify-center mt-3 space-y-5">
+                  <div className="flex flex-col items-center justify-center mt-3 space-y-5">
                     <button
-                      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-5 min-w-full rounded-lg dshadow-md transition duration-300 ease-in-out text-xl shimmer-animation"
+                      className="bg-green-500 hover:bg-green-700 text-white font-bold py-5 min-w-full rounded-lg dshadow-md transition duration-300 ease-in-out text-2xl shimmer-animation"
                       onClick={handleQuizP}
                     >
+                      <i className="fa-solid fa-circle-check"></i>
+                      {"  "}
                       {yes}
                     </button>
                     <button
-                      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-5 min-w-full rounded-lg shadow-md transition duration-300 ease-in-out text-xl shimmer-animation"
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-5 min-w-full rounded-lg shadow-md transition duration-300 ease-in-out text-2xl shimmer-animation"
                       onClick={handleQuizN}
                     >
+                      <i className="fa-solid fa-circle-xmark"></i>
+                      {"  "}
                       {no}
                     </button>
                   </div>
@@ -152,54 +164,62 @@ export default function Home() {
               </div>
             </>
           ) : step !== "process" && step !== "completed" ? (
-            <div class="checking text-center font-bold border-t border-blue-900 h-16 bg-blue-300 mt-4 mx-10 p-5 text-gray-50 shimmer-animation2">
+            <div className="checking text-center font-bold border-t border-blue-900 h-16 bg-blue-300 mt-4 mx-10 p-5 text-gray-50 shimmer-animation2">
               {step}
             </div>
           ) : (
-            <div class="flex flex-col px-5 border-t border-blue-900 bg-blue-100 mt-4 mx-2 p-5">
-              <div class="text-center text-2xl font-bold mb-4 text-gray-800 shimmer-animation">
-                {qualificationConfirmationText}
-              </div>
-              <div class="text-center mb-4 text-blue-600 shimmer-animation">
-                Make A <b>Quick Call</b> To Claim Your Food Allowance!
-              </div>
-              <div class="text-center mb-4 text-green-500 shimmer-animation">
-                Spots remaining: 4
-              </div>
-              <div class="text-center mb-4 shimmer-animation">
-                👇 TAP BELOW TO CALL 👇
-              </div>
-              <div class="flex justify-center mb-4 w-full">
-                <a href="tel:+18446720874">
-                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-5 px-16 min-w-full rounded-lg shadow-md transition duration-300 ease-in-out text-xl shimmer-animation glow">
-                    {callButtonText}
-                  </button>
-                </a>
-              </div>
-              <div class="text-center font-bold mb-4 text-purple-600 shimmer-animation">
-                We Have Reserved Your Spot
-              </div>
-              <div class="text-center mb-4 shimmer-animation">
-                Due to high call volume, your official agent is waiting for only{" "}
-                <b class="text-red-600">3 minutes</b>, then your spot will not
-                be reserved.
-              </div>
-              <div class="flex justify-center mb-4 bg-red-600 p-4 text-gray-50">
-                <div class="font-bold text-gray-50 mr-1 shimmer-animation text-xl">
-                  {min}
+            <>
+              {!endloader ? (
+                <div className="flex flex-col items-center px-5 border-t border-blue-900 bg-blue-100 mt-4 mx-4 p-10">
+                  <div className="text-center text-2xl font-bold mb-4 text-gray-800 shimmer-animation">
+                    {qualificationConfirmationText}
+                  </div>
+                  <div className="text-center mb-4 text-blue-600 shimmer-animation">
+                    Make A <b>Quick Call</b> To Claim Your Food Allowance!
+                  </div>
+                  <div className="text-center mb-4 text-green-500 shimmer-animation">
+                    Spots remaining: 4
+                  </div>
+                  <div className="text-center mb-4 shimmer-animation">
+                    👇 TAP BELOW TO CALL 👇
+                  </div>
+                  <div className="flex justify-center mb-4 w-full">
+                    <a href="tel:+18446720874">
+                      <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-5 px-16 min-w-full rounded-lg shadow-md transition duration-300 ease-in-out text-xl shimmer-animation glow">
+                        {callButtonText}
+                      </button>
+                    </a>
+                  </div>
+                  <div className="text-center font-bold mb-4 text-purple-600 shimmer-animation">
+                    We Have Reserved Your Spot
+                  </div>
+                  <div className="text-center mb-4 shimmer-animation">
+                    Due to high call volume, your official agent is waiting for
+                    only <b className="text-red-600">3 minutes</b>, then your
+                    spot will not be reserved.
+                  </div>
+                  <div className="flex justify-center itmes-center mb-4 p-4 text-gray-50 border-dotted border-2 border-red-500 w-28">
+                    <div className="font-bold text-gray-50 mr-1 shimmer-animation text-xl">
+                      {min}
+                    </div>
+                    <div>:</div>
+                    <div className="font-bold text-gray-50 ml-1 shimmer-animation text-xl">
+                      {second}
+                    </div>
+                  </div>
                 </div>
-                <div>:</div>
-                <div class="font-bold text-gray-50 ml-1 shimmer-animation text-xl">
-                  {second}
+              ) : (
+                <div className="flex flex-col items-center">
+                  <img src={loader} width={100} alt="loader" />
                 </div>
-              </div>
-            </div>
+              )}
+            </>
           )}
-          <div class="mt-96 pt-48 pb-11 px-10">
-            <div class="text-center text-blue-500 mb-2">
+          <div className="mt-96 pt-48 pb-11 px-10">
+            <div className="text-center text-blue-500 mb-2">
               {termsAndConditionsText}
             </div>
-            <div class="text-center font-bold">{copyrightText}</div>
+            <div className="text-center font-bold">{copyrightText}</div>
           </div>
         </div>
       )}
