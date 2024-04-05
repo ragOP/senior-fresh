@@ -209,7 +209,7 @@ export default function Home() {
                   </div>
                 </div>
               ) : (
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center h-full justify-center">
                   <img src={loader} width={100} alt="loader" />
                 </div>
               )}
