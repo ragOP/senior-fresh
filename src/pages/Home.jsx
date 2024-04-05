@@ -103,7 +103,10 @@ export default function Home() {
     >
       {isLoading ? (
         <>
-          <div className="sticky-container glassmorphism md:px-6 lg:px-16 z-50 text-lg font-semibold">
+          <div
+            className="sticky-container glassmorphism md:px-6 lg:px-16 z-50 text-lg font-semibold"
+            id="top"
+          >
             {mainTitleText}
           </div>
 
@@ -118,7 +121,10 @@ export default function Home() {
         </>
       ) : (
         <div>
-          <div className="sticky-container glassmorphism md:px-6 lg:px-16 z-50 text-lg font-semibold">
+          <div
+            className="sticky-container glassmorphism md:px-6 lg:px-16 z-50 text-lg font-semibold"
+            id="top"
+          >
             {mainTitleText}
           </div>
 
